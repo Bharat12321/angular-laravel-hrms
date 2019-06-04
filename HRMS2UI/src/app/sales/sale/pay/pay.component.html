@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Sale </h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+    <div fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+          <mat-form-field fxFlex>
+            <mat-placeholder>Payment Mode</mat-placeholder >
+            <mat-select formControlName="mode_id" >
+              <mat-option *ngFor="let mode of modes" [value]="mode.id">
+                {{ mode.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-placeholder>Reference Number</mat-placeholder>
+            <input type="text" formControlName="reference" matInput>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-placeholder>Paid Amount</mat-placeholder>
+            <input type="number" stop="any" formControlName="paid_amount"  matInput>
+          </mat-form-field>
+      </div>
+      </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Sale</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Payment</button>
+  </mat-dialog-actions>
+</form>

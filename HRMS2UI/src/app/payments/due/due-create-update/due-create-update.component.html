@@ -1,0 +1,101 @@
+<h2 mat-dialog-title>Due</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Code</mat-placeholder>
+          <input type="text" required formControlName="code" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>First Name</mat-placeholder>
+          <input type="text"  required formControlName="first_name" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Middle Name</mat-placeholder>
+          <input type="text"  formControlName="middle_name" matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Last Name</mat-placeholder>
+          <input type="text"  formControlName="last_name" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Email Id</mat-placeholder>
+          <input type="text"  formControlName="email_id" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Blood Group</mat-placeholder>
+          <input type="text"  formControlName="blood_group" matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Birth Place</mat-placeholder>
+          <input type="text"  formControlName="birth_place" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Religion</mat-placeholder>
+          <input type="text"  formControlName="religion" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Languages</mat-placeholder>
+          <input type="text"  formControlName="languages" matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Mobile Number</mat-placeholder>
+          <input type="text"  formControlName="mobile_no" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Passpot Number</mat-placeholder>
+          <input type="text"  formControlName="passport_no" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Height</mat-placeholder>
+          <input type="text"  formControlName="height" matInput>
+        </mat-form-field>
+      </div>
+      <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Project</mat-placeholder>
+          <mat-select formControlName="organization_id">
+            <mat-option *ngFor="let organization of organizations" [value]="organization.id">
+              {{ organization.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Type</mat-placeholder>
+          <mat-select formControlName="type_id">
+            <mat-option *ngFor="let type of types" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Weight</mat-placeholder>
+          <input type="text" formControlName="weight" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Status</mat-placeholder>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statusData" [value]="status.key">
+              {{ status.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Due</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Due</button>
+  </mat-dialog-actions>
+</form>

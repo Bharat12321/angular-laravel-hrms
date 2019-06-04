@@ -1,0 +1,219 @@
+<!-- <h2 mat-dialog-title>Sale </h2> -->
+<form [formGroup]="form" (ngSubmit)="save()" style="width: 100%;">
+  <!-- <mat-dialog-content style="width: 100%;"> -->
+  <!-- <div class="container"> -->
+    <div>
+      <div>
+        <mat-card>
+          <div  fxLayout="column"  fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+            <mat-form-field fxFlex>
+              <mat-placeholder>Name</mat-placeholder>
+              <input type="text" required formControlName="name" matInput>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <mat-placeholder>Company</mat-placeholder>
+              <mat-select formControlName="company_id">
+                <mat-option *ngFor="let company of companies" [value]="company.id">
+                  {{ company.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex  *ngIf="item_display">
+              <mat-placeholder>Payment Type</mat-placeholder >
+              <mat-select formControlName="payment_type" required (change)="changePayment($event)">
+                <mat-option  value="Pay Now">Pay Now</mat-option>
+                <mat-option  value="Credit">Credit</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+              <input [matDatepicker]="picker1" placeholder="Date" formControlName="date" matInput required>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+          <mat-form-field fxFlex>
+            <mat-placeholder>Remarks</mat-placeholder>
+            <input type="text" formControlName="remarks" matInput>
+          </mat-form-field>
+          <!-- <mat-form-field fxFlex>
+            <mat-placeholder>Status</mat-placeholder>
+            <mat-select formControlName="status">
+              <mat-option *ngFor="let status of statusData" [value]="status.key">
+                {{ status.value }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+        </mat-card>
+        <br/>
+        <mat-card >
+          <div fxLayout.xs="column" style="font-weight: bolder" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+            <div fxFlex="30">SaleType</div>
+            <div fxFlex="40">Item</div>
+            <div fxFlex="30">Employee</div>
+            <div fxFlex="20">Qty</div>
+            <div fxFlex="20">Cost</div>
+            <div fxFlex="20" style="text-align: right">Total</div>
+          </div>
+
+          <div formArrayName="invoiceItems" style="font-weight: bolder; text-align: center"  *ngIf="item_display">
+            <div fxLayout.xs="column"
+                *ngFor="let item of invoiceItems.controls; let i=index; let odd=odd;" [formGroupName]="i"
+                [ngClass]="{odd_row: odd}"  fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+              <mat-input-container fxFlex="40">
+                <span matPrefix>
+                  <button  mat-icon-button (click)="removeItem(item)">
+                    <mat-icon class="mat-24" aria-label="remove">clear</mat-icon>
+                  </button> {{i + 1}}. &nbsp;
+                </span>
+
+                <mat-select formControlName="sale_type_id" (change)="salesTypeChange($event,item,i)" required>
+                  <mat-option *ngFor="let saleItem of saletype" [value]="saleItem.id">
+                    {{ saleItem.name }}
+                  </mat-option>
+                </mat-select>             
+              </mat-input-container>
+              <mat-input-container fxFlex="30">
+                <mat-select formControlName="item_id" (change)="priceItem(item)" required>
+                  <mat-option *ngFor="let item of salesItems[i]" [value]="item.id">
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select> 
+              </mat-input-container>
+              <mat-input-container fxFlex="30">
+                <mat-select formControlName="employee_id" required>
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">
+                    {{ employee.name }}
+                  </mat-option>
+                </mat-select> 
+              </mat-input-container>
+              <mat-input-container matInput fxFlex="20">
+                <input class="form-control" matInput type="number"  (change)="priceItem(item)" formControlName="qty" value="{{ item.value.qty}}" required>
+              </mat-input-container>
+              <mat-input-container fxFlex="20">
+                <input class="form-control" matInput readonly type="number" value="{{ item.value.cost}}" required>
+              </mat-input-container>
+              <mat-input-container fxFlex="20">
+                <input class="form-control right_placeholder" matInput  readonly value="{{ item.value.total | currency : 'QAR' }}">
+              </mat-input-container>
+            </div>
+          </div>
+
+          <!-- for edit fucntion -->
+          <!-- <div style="font-weight: bolder; text-align: center">
+            <div fxLayout.xs="column"
+                *ngFor="let item of defaults.details; let i=index; let odd=odd;" [formGroupName]="i"
+                [ngClass]="{odd_row: odd}"  fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+              <div fxFlex="40">
+                <div style="margin-top: 25px">{{i + 1}}. &nbsp;{{ item.item.name}}</div> 
+              </div>
+              <mat-input-container matInput fxFlex="20">
+                <input class="form-control" matInput type="number"  formControlName="qty" value="{{ item.quantity}}"   readonly>
+              </mat-input-container>
+              <mat-input-container fxFlex="20">
+                <input class="form-control" matInput readonly type="number" value="{{ item.price}}">
+              </mat-input-container>
+              <mat-input-container fxFlex="20">
+                <input class="form-control right_placeholder" matInput  readonly value="{{ item.total_price | currency : 'AED' }}">
+              </mat-input-container>
+            </div>
+          </div> -->
+          <div fxLayout="row"  *ngIf="item_display">
+          <button class="create" (click)="addItem()" type="button" mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+          </div>
+          <div fxLayout="row"  *ngIf="item_display">
+            <div fxFlex="50">
+            </div>
+            <div fxFlex="20">
+              <label>Sub total</label>
+            </div>
+            <div fxFlex="30">
+              <input class="form-control right_placeholder" matInput  readonly value="{{ form.value.sub_total | currency  : 'AED' }}">
+            </div>
+          </div>
+
+          <div fxLayout="row">
+            <div fxFlex></div>
+            <mat-form-field fxFlex="20">
+              <span matPrefix>VAT</span>
+              <input matInput type="number" style="direction: rtl;" value="{{ vat }}" (change)="updateChange()" formControlName="vat_per">
+               <span matSuffix>%</span>
+            </mat-form-field>
+            <mat-form-field fxFlex="30">
+              <input class="form-control right_placeholder" matInput  readonly value="{{ form.value.vat | currency  : 'AED' }}">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex></div>
+            <mat-form-field fxFlex="20">
+            <span matPrefix>Discount</span>
+              <input matInput type="number" style="direction: rtl;" (change)="updateChange()" formControlName="discount">
+            </mat-form-field>
+            <mat-form-field fxFlex="30">
+              <input class="form-control right_placeholder" matInput value="{{ form.value.discount | currency  : 'AED' }}">
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row" >
+            <div fxFlex="50">
+            </div>
+            <div fxFlex="20">
+                <label>Grant total</label>
+            </div>
+            <div fxFlex="30"  >
+              <input class="form-control right_placeholder" matInput  readonly value="{{ form.value.total | currency : 'AED'  }}">
+            </div>
+          </div>
+    </mat-card>
+    <br/>
+
+    <mat-card *ngIf="payment">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Payment Mode</mat-placeholder >
+          <mat-select formControlName="mode_id" >
+            <mat-option *ngFor="let mode of modes" [value]="mode.id">
+              {{ mode.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Reference Number</mat-placeholder>
+          <input type="text" formControlName="reference" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Paid Amount</mat-placeholder>
+          <input type="number" stop="any" formControlName="paid_amount"  value="{{ form.value.paid_amount}}" matInput>
+        </mat-form-field>
+        <!-- <mat-form-field fxFlex>
+          <mat-placeholder>Due Amount</mat-placeholder>
+          <input type="number" readonly formControlName="due_amount" value="{{ form.value.due_amount}}" matInput>
+        </mat-form-field> -->
+        <!-- <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input [matDatepicker]="picker2" placeholder="Cheque Date" formControlName="cheque_date" matInput>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field> -->
+      </div>
+    </mat-card>
+    <br/>
+      </div>
+    </div>
+  <!-- </mat-dialog-content> -->
+
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button color="primary" (click)="cancelRequest()">Cancel</button>
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Item</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Item</button>
+  </mat-dialog-actions>
+  
+
+  <!-- <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Sale</button>
+  </mat-dialog-actions> -->
+
+<!-- </div> -->
+</form>

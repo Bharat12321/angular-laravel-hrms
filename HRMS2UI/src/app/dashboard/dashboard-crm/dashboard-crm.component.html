@@ -1,0 +1,44 @@
+<div class="dashboard-crm">
+
+  <vr-page-header *ngIf="!hideHeader" [height]="'170px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+                  [reverse]="true"></vr-page-header>
+
+  <div class="container">
+
+    <vr-breadcrumbs *ngIf="!hideHeader" currentPage="Dashboard - CRM" header="primary"></vr-breadcrumbs>
+
+
+    <div fxLayout="column" fxLayout.gt-sm="row"
+         fxLayoutAlign.gt-sm="start start"
+         [fxLayoutGap]="layoutGap['lt-md']" [fxLayoutGap.gt-md]="layoutGap['gt-md']">
+      <div fxLayout="column"
+           [fxLayoutGap]="layoutGap['lt-md']" [fxLayoutGap.gt-md]="layoutGap['gt-md']"
+           [fxFlex]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+        <div class="widget">
+          <vr-tasks-widget></vr-tasks-widget>
+        </div>
+        <div class="widget">
+          <vr-usertable-widget></vr-usertable-widget>
+        </div>
+        <div class="widget">
+          <vr-message-widget></vr-message-widget>
+        </div>
+      </div>
+
+      <div fxLayout="column"
+           [fxLayoutGap]="layoutGap['lt-md']" [fxLayoutGap.gt-md]="layoutGap['gt-md']"
+           [fxFlex]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+        <div class="widget">
+          <vr-meeting-widget></vr-meeting-widget>
+        </div>
+        <div class="widget">
+          <vr-project-widget></vr-project-widget>
+        </div>
+        <div class="widget">
+          <vr-market-widget></vr-market-widget>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

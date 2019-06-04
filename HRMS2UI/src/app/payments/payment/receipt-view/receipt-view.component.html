@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Receipt</h2>
+
+  <mat-dialog-content >
+
+    <div class="person" id="print-section">
+      <div fxLayout="column" class="headdiv" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="left billto" fxLayout="row" >
+          <div>
+            <img fxFlex="150px"  class="picture" src="http://dynamic.wims.pro/assets/img/logo.png">
+            <br/>
+            <p>Dynamic Transaction,</p>
+          </div>
+        </div>
+        <div class="receipthead">
+          <h1>Receipt</h1>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="left" fxLayout="row" >
+            <p>Number : {{ data.id }}</p>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <h4> Amount (QR): {{ data.total }}</h4>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <p> Date : {{ data.due_date }} </p>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="receipt">
+          <h4>Received from Mr/Mrs/Ms : {{ data.toName }}</h4>
+          <h4>The sum of Qrs : {{ data.totalwords }}</h4>
+        <!-- <div class="left cash"  fxLayout="column" > -->
+
+          <h4>By Cash/Cheque : {{ data.modeName }} .......................................</h4>
+        <!-- </div>
+        <div class="right cashdate"  fxLayout="column" >
+          <h4>Date : ...................</h4>
+        </div> -->
+          <h4>Fees for : {{ data.feeFor }}</h4>
+        <div class="left"  fxLayout="column" >
+            <p>Approval</p>
+            <p>..............................</p>
+        </div>
+        <div class="left" fxLayout="column" fxLayoutAlign="space-between" >
+          <p> Accountant</p>
+            <p>.........................</p>
+        </div>
+        <div class="left" fxLayout="column" fxLayoutAlign="space-between" >
+          <p> Receiver </p>
+            <p>...........................</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button  mat-button color="primary"  (click)="print()">Print</button>
+  </mat-dialog-actions>

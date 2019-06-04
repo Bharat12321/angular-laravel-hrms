@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Role</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()"  *ngIf="dataLoaded">
+  <mat-dialog-content>
+
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Name</mat-placeholder>
+          <input type="text" required formControlName="name" matInput>
+        </mat-form-field>
+      </div>
+      <div class="permissions">
+        <div *ngFor="let permission of permissions; let i = index" class="permission"  formArrayName="permissions">
+            <mat-checkbox  [formControlName]="i">{{permission.name}}</mat-checkbox>
+        </div>
+      </div>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button  [disabled]="!form.valid">Create Role</button>
+    <button *ngIf="isUpdateMode()" mat-button  [disabled]="!form.valid">Update Role</button>
+  </mat-dialog-actions>
+</form>

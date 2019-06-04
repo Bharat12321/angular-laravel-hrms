@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Sponsor</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Code</mat-placeholder>
+          <input type="text" required formControlName="code" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Name</mat-placeholder>
+          <input type="text" required formControlName="name" matInput>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Company Name</mat-placeholder>
+          <input type="text"  formControlName="company_name" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Employer Eid</mat-placeholder>
+          <input type="text"  formControlName="employer_eid" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Payer Eid</mat-placeholder>
+          <input type="text"  formControlName="payer_eid" matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Expiry Date</mat-placeholder>
+          <input [matDatepicker]="picker" formControlName="id_expiry_date" matInput>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Remarks</mat-placeholder>
+          <input type="text" formControlName="remarks" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Status</mat-placeholder>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statusData" [value]="status.key">
+              {{ status.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Sponsor</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Sponsor</button>
+  </mat-dialog-actions>
+</form>

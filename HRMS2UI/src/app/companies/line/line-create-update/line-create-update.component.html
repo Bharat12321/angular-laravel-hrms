@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Line Item</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Course</mat-placeholder>
+          <mat-select formControlName="course_id" required>
+            <mat-option *ngFor="let course of courses" [value]="course.id">
+              {{ course.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Quantity</mat-placeholder>
+          <input type="number" required formControlName="quantity" matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Discount</mat-placeholder>
+          <input type="number" formControlName="discount" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input  [matDatepicker]="picker2" placeholder="Date" required formControlName="date" matInput>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Remarks</mat-placeholder>
+          <input type="text" formControlName="remarks" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Line  Item</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Line  Item</button>
+  </mat-dialog-actions>
+</form>

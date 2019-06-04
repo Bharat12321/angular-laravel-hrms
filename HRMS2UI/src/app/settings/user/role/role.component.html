@@ -1,0 +1,59 @@
+<div class="all-in-one-table">
+  <vr-page-header [height]="'180px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true"></vr-page-header>
+
+  <div class="container">
+
+    <vr-breadcrumbs [currentPage]="'Roles'" [names]="['Settings']"  [header]="'primary'"></vr-breadcrumbs>
+
+    <vr-list name="Roles" [columns]="columns" (filterChange)="onFilterChange($event)">
+      <div class="actions" fxFlexAlign="center">
+        <button class="create" (click)="createRole()" type="button" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button class="create" (click)="exportData()" type="button" mat-mini-fab color="primary">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+      </div>
+
+      <div class="example-loading-shade" *ngIf="isLoadingResults ">
+          <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      </div>
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+
+        <!-- fullName Column -->
+        <ng-container *ngFor="let column of columns">
+          <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row[column.property] }}</mat-cell>
+          </ng-container>
+        </ng-container>
+
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="statusString">
+          <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell class="actions-cell" *matCellDef="let row">
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
+
+              <button *ngIf="row.status==1" type="button" mat-mini-fab color="primary" >
+                <mat-icon style="color:#FFF"  matTooltip="Active">thumb_up</mat-icon>
+              </button>
+              <button *ngIf="row.status==0" type="button" mat-mini-fab color="warn" >
+                <mat-icon  style="color:#FFF"  matTooltip="Inactive">thumb_down</mat-icon>
+              </button>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: visibleColumns;" (click)="updateRole(row)" class="clickable"></mat-row>
+      </mat-table>
+
+      <mat-paginator class="paginator" [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+
+    </vr-list>
+
+  </div>
+
+</div>

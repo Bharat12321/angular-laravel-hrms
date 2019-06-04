@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Item</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Name</mat-placeholder>
+          <input type="text" required formControlName="name" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Category</mat-placeholder>
+          <mat-select formControlName="category_id" required>
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field fxFlex>
+          <mat-placeholder>Duration (days)</mat-placeholder>
+          <input type="number"  formControlName="duration" matInput>
+        </mat-form-field> -->
+        <mat-form-field fxFlex>
+          <mat-placeholder>Price</mat-placeholder>
+          <input type="number"  formControlName="original_price" matInput>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Cost</mat-placeholder>
+          <input type="number" step="any" formControlName="discount_price" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Remarks</mat-placeholder>
+          <input type="text" formControlName="remarks" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Status</mat-placeholder>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statusData" [value]="status.key">
+              {{ status.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Item</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Item</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>User</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Name</mat-placeholder>
+          <input type="text" required formControlName="name" matInput>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Username</mat-placeholder>
+          <input type="text" required formControlName="username" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Password</mat-placeholder>
+          <input type="password" required formControlName="password" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Role" required formControlName="role_id">
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{ role.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button [disabled]="!form.valid">Create User</button>
+    <button *ngIf="isUpdateMode()" mat-button [disabled]="!form.valid">Update User</button>
+  </mat-dialog-actions>
+</form>

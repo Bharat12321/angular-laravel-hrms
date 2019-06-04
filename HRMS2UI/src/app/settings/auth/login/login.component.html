@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+  <div class="login mat-elevation-z12">
+    <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
+      <img class="logo" src="assets/img/logo.png" style="height: 50px">
+    </div>
+    <form #form="ngForm" (ngSubmit)="signIn(form.value)">
+      <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
+        <mat-form-field>
+          <input matInput i18n-placeholder placeholder="Username"  minlength="4" name="username" required autofocus ngModel>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput i18n-placeholder placeholder="Password" type="password" name="password" required ngModel>
+        </mat-form-field>
+        <button color="primary" mat-raised-button [disabled]="!form.valid" i18n>SIGN IN</button>
+      </div>
+    </form>
+  </div>
+</div>

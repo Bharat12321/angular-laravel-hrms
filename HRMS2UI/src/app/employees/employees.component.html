@@ -1,0 +1,58 @@
+<div class="dashboard" fxLayout="column">
+  <div class="splash">
+    <div class="container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" fxLayoutGap.lt-md="24px">
+      <div class="example-loading-shade" *ngIf="isLoadingResults ">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+      <div class="left" fxLayout="row" *ngIf="!isLoadingResults" >
+
+        <input type="file" id="avatar" (change)="fileChange($event)"  accept="image/*" #file style="display: none;">
+        <img fxFlex="150px"  id="preview"  class="picture" (click)="file.click()" [src]="image">
+        <div fxLayout="column" fxLayoutAlign="space-between">
+          <div>
+            <div class="head">{{ employee.name }} - {{ employee.code }}</div>
+              <div class="info" fxLayout="row">
+                <div class="names">
+                  <div class="name">Date of birth:</div>
+                  <div class="name">Joining Date:</div>
+                  <div class="name">Email Address:</div>
+                  <div class="name">Gender:</div>
+                  <div class="name">Contact:</div>
+                </div>
+                <div class="values">
+                  <div class="value">{{ employee.date_of_birth}}</div>
+                  <div class="value">{{ employee.joining_date}}</div>
+                  <div class="value">{{ employee.email }}</div>
+                  <div class="value">{{ employee.gender }}</div>
+                  <div class="value">{{ employee.contact_number }}</div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="right" fxLayout="column" fxLayoutAlign="space-between" *ngIf="!isLoadingResults">
+        <div>
+          <h4 class="title">Employee Login</h4>
+          <div class="sub-title">
+            <mat-slide-toggle [checked]="login" (change)="enableDisbaleLogin()" color="primary">
+              Option to login to the system for the employee
+            </mat-slide-toggle>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+<mat-tab-group class="dashboard-tabs" *ngIf="!isLoadingResults" >
+  <mat-tab label="SALES">
+    <vr-activity></vr-activity>
+  </mat-tab>
+  <mat-tab label="DOCUMENTS">
+     <vr-attachment></vr-attachment> 
+  </mat-tab>
+  <mat-tab label="ACTIVITY">
+    <vr-activity></vr-activity>
+  </mat-tab>
+</mat-tab-group>
+</div>

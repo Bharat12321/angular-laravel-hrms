@@ -1,0 +1,102 @@
+<div class="all-in-one-table">
+
+  <span [hidden]="!(viewState == 'LIST')">
+  <vr-page-header [height]="'180px'" background="url(/assets/img/demo/headers/pattern-3.png)" [reverse]="true">
+  </vr-page-header>
+
+  <div class="container">
+
+    <vr-breadcrumbs [currentPage]="pageHead" [names]="['Account']" [header]="'primary'"></vr-breadcrumbs>
+
+
+      <vr-list [name]="pageHead" [columns]="columns" (filterChange)="onFilterChange($event)">
+
+        <div class="actions" fxFlexAlign="center">
+          <button class="create" *ngIf="add" (click)="createSale()" type="button" mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button class="create" (click)="exportData()" type="button" mat-mini-fab color="primary">
+            <mat-icon>cloud_download</mat-icon>
+          </button>
+          <button class="create" type="button" mat-mini-fab color="primary" [matMenuTriggerFor]="columnFilter">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+        </div>
+        <mat-menu #columnFilter="matMenu" yPosition="below" xPosition="before" class="matMenu">
+          <mat-form-field style="width: 80%;margin: 0 25px;">
+            <input matInput [matDatepicker]="picker1" (dateChange)="filterDate('start',$event)" [(ngModel)]="start_date"
+              placeholder="From" ngDefaultControl>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 [(ngModel)]="start_date" ngDefaultControl></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field style="width: 80%;margin: 0 25px;">
+            <input matInput [matDatepicker]="picker2" (dateChange)="filterDate('end',$event)" [(ngModel)]="end_date"
+              placeholder="To" ngDefaultControl>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 [(ngModel)]="end_date" ngDefaultControl></mat-datepicker>
+          </mat-form-field>
+        </mat-menu>
+        <div class="example-loading-shade" *ngIf="isLoadingResults">
+          <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        </div>
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- All Column -->
+          <ng-container *ngFor="let column of columns">
+            <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{ row[column.property] }}</mat-cell>
+            </ng-container>
+          </ng-container>
+
+
+          <!-- actions Column -->
+          <ng-container matColumnDef="statusString">
+            <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>
+            <mat-cell class="actions-cell" *matCellDef="let row">
+              <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
+
+                <button type="button" mat-mini-fab color="primary">
+                  <mat-icon (click)="updateSale(row)" style="color:#FFF" matTooltip="Click to Edit">edit</mat-icon>
+                </button>
+
+                <!-- <button  type="button" mat-mini-fab color="primary" (click)="updateSale(row)">
+                  <mat-icon  style="color:#FFF"  matTooltip="Click to View">remove_red_eye</mat-icon>
+                </button> -->
+
+                <button type="button" mat-mini-fab color="primary" (click)="deleteSale(row)">
+                  <mat-icon style="color:#FFF" matTooltip="Delete">delete</mat-icon>
+                </button>
+                <button type="button" mat-mini-fab color="primary" *ngIf="row.due_amount > 0">
+                  <mat-icon (click)="pay(row)" style="color:#FFF" matTooltip="Click to Pay">receipt</mat-icon>
+                </button>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: visibleColumns;" class="clickable"></mat-row>
+        </mat-table>
+
+        <mat-paginator class="paginator" [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+
+      </vr-list>
+    
+  </div>
+</span>
+    <span [ngSwitch]="viewState">
+      <!-- <span *ngSwitchCase="'LIST'">
+      </span> -->
+      <span *ngSwitchCase="'ADD'">
+        <vr-sale-create-update [defaults]="null"></vr-sale-create-update>
+      </span>
+      <span *ngSwitchCase="'UPDATE'">
+        <vr-sale-create-update [defaults]="selectedSale"></vr-sale-create-update>
+      </span>
+      <span *ngSwitchDefault>
+      </span>
+    </span>
+</div>

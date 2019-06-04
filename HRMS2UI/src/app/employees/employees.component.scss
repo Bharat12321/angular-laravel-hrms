@@ -1,0 +1,135 @@
+@import "../../styles/_var.scss";
+
+.dashboard {
+  height: 100%;
+
+  .splash {
+    background: url('/assets/img/demo/headers/pattern-1.png');
+    padding: 40px 20px;
+    .container{
+      background: #FFF;
+    }
+    .left {
+      padding: 16px 32px;
+
+      .picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-right: 38px;
+
+        @include mat-elevation(4);
+      }
+
+      .head {
+        font-size: 28px;
+        font-weight: 500;
+      }
+
+      .description, .contact {
+        margin-top: 6px;
+        font-size: 14px;
+        color: $color__text-dark;
+
+        .icon {
+          font-size: 18px;
+          line-height: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .actions {
+        margin-top: 6px;
+
+        .primary-button {
+          padding: 2px 32px;
+        }
+      }
+    }
+
+    .right {
+      padding: 16px 32px;
+      border-left: 1px solid #E0E0E0;
+
+      @include lt-sm {
+        border-left: none;
+      }
+
+      .info {
+        font-size: 14px;
+
+        .names {
+          .name {
+            font-weight: 500;
+          }
+        }
+
+        .values {
+          margin-left: 24px;
+        }
+
+        .name, .value {
+          padding: 8px 0;
+        }
+
+
+      }
+
+      .social {
+        height: 40px;
+        font-size: 20px;
+        color: mat-color($color-primary);
+        cursor: pointer;
+      }
+    }
+
+    .left {
+
+      .info {
+        font-size: 14px !important;
+
+        .names {
+          .name {
+            font-weight: 500;
+          }
+        }
+
+        .values {
+          margin-left: 24px;
+        }
+
+        .name, .value {
+          padding: 8px 0;
+        }
+
+
+      }
+
+    }
+  }
+
+    .dashboard-tabs {
+      background: white;
+
+      .splash {
+        background: #FFF !important;
+      }
+
+    }
+  .dashboard-front {
+    @include responsivePadding();
+  }
+}
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

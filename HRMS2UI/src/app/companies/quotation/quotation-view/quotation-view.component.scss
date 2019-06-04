@@ -1,0 +1,66 @@
+@import "../../../../styles/_var.scss";
+
+.person{
+	width: 800px;
+	min-width: 800px;
+	height: 1100px;
+	max-height: 1100px;
+}
+.left {
+	width: 400px;
+	float: left;
+
+}
+.picture {
+	height: 50px;
+  width: 220px;
+
+}
+
+.left > div , .left div p {
+	text-align: left !important;
+	line-height: 10px !important;
+	display: block !important;
+}
+
+
+.right {
+	float: right;
+	width: 400px;
+}
+.right > div , .right div p {
+	text-align: right !important;
+	line-height: 10px !important;
+	display: block !important;
+}
+.billto {
+  width: 560px !important;
+}
+.info {
+
+    font-size: 16px;
+
+}
+.names .name{
+   font-weight: 500;
+}
+
+.info .values {
+  margin-left: 24px;
+}
+
+.info .name,.info  .value {
+  padding: 8px 0;
+}
+
+.feesHead{
+  color: #FFF !important;
+  background: #0a94d9 !important;
+  margin-left: -24px;
+  padding-left: 24px;
+  margin-right: -24px;
+  padding-right: 24px;
+}
+.fees {
+  width: 700px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="fr" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6f5d3a4c2491b13b428dadaaa0880bda824e7db3" datatype="html">
+        <source>Invalid username and/or password.</source>
+        <target>Je n'affiche aucun élément</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/auth/login/login.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d3b88a3ae6ff3d987f86395605397ec736dee9c" datatype="html">
+        <source>E-Mail</source>
+        <target>Je n'affiche aucun élément</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/auth/login/login.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <target>Je n'affiche aucun élément</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/auth/login/login.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c893eefa8909712f5ea6bd1cc8e5ced60de5dcd" datatype="html">
+        <source>SIGN IN</source>
+        <target>Je n'affiche aucun élément</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/auth/login/login.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

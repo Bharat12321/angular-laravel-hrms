@@ -1,0 +1,148 @@
+<div class="dashboard-statistics">
+
+  <vr-page-header *ngIf="!hideHeader" [height]="'170px'" background="url(/assets/img/demo/headers/pattern-3.png)"
+                  [reverse]="true"></vr-page-header>
+
+  <div class="container">
+
+    <vr-breadcrumbs *ngIf="!hideHeader" currentPage="Dashboard" header="primary"></vr-breadcrumbs>
+
+    <div fxLayout="column"
+         [fxLayoutGap]="layoutGap['lt-md']" [fxLayoutGap.gt-md]="layoutGap['gt-md']">
+
+      <div class="example-loading-shade" *ngIf="isLoadingResults">
+          <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      </div>
+      
+      <div  *ngIf="!isLoadingResults" fxLayout="row" fxLayout.lt-md="column"
+           fxLayoutAlign="start start" fxLayout.lt-md="start stretch"
+           [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+           [fxFlex]="flexWidth['lt-sm']">
+
+        <div fxLayout="row"
+             fxLayoutAlign="start start" fxLayoutAlign.lt-md="start stretch"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/employee/all')">
+            <vr-state-widget property="All Employees" value="{{ data.allEmployeeCount }}" icon=""
+
+                             backgroundColor="linear-gradient(60deg, #8C99E0, #6572B8)" textColor="white"></vr-state-widget>
+          </div>
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/employee/active')">
+            <vr-state-widget property="Active Employees" value="{{ data.activeEmployeeCount }}" icon=""
+
+                             backgroundColor="linear-gradient(60deg, #4DD0E2, #4CA8BA)" textColor="white"></vr-state-widget>
+          </div>
+
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column"
+             fxLayoutAlign="start start" fxLayoutAlign.lt-md="start stretch"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+          
+
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/sale/today')">
+            <vr-state-widget property="Sales Today" value="{{ data.saleToday }}" icon="" valuePrefix=""
+                             backgroundColor="linear-gradient(60deg, #81C683, #62A864)" textColor="white"></vr-state-widget>
+          </div>
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/sale/month')">
+            <vr-state-widget property="Sales This Month" value="{{ data.saleMonth }}" icon="" valuePrefix=""
+                             backgroundColor="linear-gradient(60deg, #EAC459, #DCAC3F)" textColor="white"></vr-state-widget>
+          </div>
+        </div>
+      </div>
+
+      <div  *ngIf="!isLoadingResults"  fxLayout="row" fxLayout.lt-md="column"
+           fxLayoutAlign="start start" fxLayout.lt-md="start stretch"
+           [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+           [fxFlex]="flexWidth['lt-sm']">
+
+        <div fxLayout="row"
+             fxLayoutAlign="start start" fxLayoutAlign.lt-md="start stretch"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/payment/income')">
+            <vr-state-widget property="Income Today" value="{{ data.incomeToday }}" icon="QAR"
+
+                             backgroundColor="linear-gradient(60deg, #8C99E0, #6572B8)" textColor="white"></vr-state-widget>
+          </div>
+
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/payment/expense')">
+            <vr-state-widget property="Expense Today" value="{{ data.expenceToday }}" icon="QAR"
+                             backgroundColor="linear-gradient(60deg, #4DD0E2, #4CA8BA)" textColor="white"></vr-state-widget>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column"
+             fxLayoutAlign="start start" fxLayoutAlign.lt-md="start stretch"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/payment/income_month')">
+            <vr-state-widget property="Income This Month" value="{{ data.incomeMonth }}" icon="QAR"
+                             backgroundColor="linear-gradient(60deg, #81C683, #62A864)" textColor="white"></vr-state-widget>
+          </div>
+
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/payment/expense_month')">
+            <vr-state-widget property="Expense This Month" value="{{ data.expenceMonth }}" icon="QAR" valuePrefix=""
+                             backgroundColor="linear-gradient(60deg, #EAC459, #DCAC3F)" textColor="white"></vr-state-widget>
+          </div>
+        </div>
+      </div>
+      <div  *ngIf="!isLoadingResults"  fxLayout="row" fxLayout.lt-md="column"
+           fxLayoutAlign="start start" fxLayout.lt-md="start stretch"
+           [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+           [fxFlex]="flexWidth['lt-sm']">
+
+        <div fxLayout="row"
+             fxLayoutAlign="start start" fxLayoutAlign.lt-md="start stretch"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/sale/due')">
+            <vr-state-widget property="Total Due Amount" value="{{ data.due }}" icon="QAR"
+
+                             backgroundColor="linear-gradient(60deg, #8C99E0, #6572B8)" textColor="white"></vr-state-widget>
+          </div>
+
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/sale/due')">
+            <vr-state-widget property="Due" value="{{ data.dueCount }}" icon="QAR"
+                             backgroundColor="linear-gradient(60deg, #4DD0E2, #4CA8BA)" textColor="white"></vr-state-widget>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column"
+             fxLayoutAlign="start start" fxLayoutAlign.lt-md="start stretch"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/sale')">
+            <vr-state-widget property="Total Profit" value="{{ data.profitAll }}" icon="QAR"
+                             backgroundColor="linear-gradient(60deg, #81C683, #62A864)" textColor="white"></vr-state-widget>
+          </div>
+
+          <div class="widget" fxFlex="auto" fxFlex.gt-xs (click)="route('/sale/month')">
+            <vr-state-widget property="profit This Month" value="{{ data.profitMonth }}" icon="QAR" valuePrefix=""
+                             backgroundColor="linear-gradient(60deg, #EAC459, #DCAC3F)" textColor="white"></vr-state-widget>
+          </div>
+        </div>
+      </div>
+      
+      <div  *ngIf="!isLoadingResults" fxLayout="row" fxLayout.lt-md="column"
+           fxLayoutAlign="start start" fxLayout.lt-md="start stretch"
+           [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']">
+
+        <div fxLayout="column"
+             [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+             [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+
+          <div fxLayout="column" [fxLayout.gt-lg]="layoutColumnOnBoxed"
+               [fxLayoutGap]="layoutGap['gt-md']" [fxLayoutGap.lt-md]="layoutGap['lt-md']"
+               [fxFlex]="flexWidth['gt-md']" [fxFlex.lt-md]="flexWidth['lt-sm']" [fxFlex.gt-sm]="flexWidth['gt-sm']" [fxFlex.gt-md]="flexWidth['gt-md']">
+            <div class="widget" [fxFlex.gt-md]="flexWidth['gt-md']">
+              <vr-barchart-widget></vr-barchart-widget>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

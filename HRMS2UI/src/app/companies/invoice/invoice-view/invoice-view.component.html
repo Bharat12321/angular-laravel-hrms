@@ -1,0 +1,106 @@
+<h2 mat-dialog-title>Invoice</h2>
+
+  <mat-dialog-content >
+
+    <div class="person" id="print-section">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="left" fxLayout="row" >
+          <img fxFlex="150px"  class="picture" src="http://dynamic.wims.pro/assets/img/logo.png">
+
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <p>Dynamic Transaction,</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="left billto" fxLayout="row" >
+          <div fxLayoutAlign="end center">
+            <h2>BILL TO</h2>
+            <h3>{{ data.toName }}</h3>
+          </div>
+
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <p>Invoice Number: {{ data.id }}</p>
+            <p>Invoice Date: {{ data.due_date }}</p>
+            <p>Payment Due: {{ data.due_date }}</p>
+            <p>Amount Due (QAR): {{ data.total }}</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div fxLayout="column" class="feesHead" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="left fees" fxLayout="row" >
+          <div fxLayoutAlign="end center">
+            <h3>Course</h3>
+          </div>
+        </div>
+        <div class="left fees" fxLayout="row" >
+          <div fxLayoutAlign="end center">
+            <h3>Price </h3>
+          </div>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <h3>Quantity</h3>
+          </div>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <h3>Discount </h3>
+          </div>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <h3>Total </h3>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px" *ngFor="let fee of data.fees">
+        <div class="left fees" fxLayout="row" >
+          <div fxLayoutAlign="end center">
+            <p>{{ fee.name }}</p>
+          </div>
+        </div>
+        <div class="left fees" fxLayout="row" >
+          <div fxLayoutAlign="end center">
+            <p>{{ fee.unit_price }}</p>
+          </div>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <p>{{ fee.quantity }}</p>
+          </div>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <p>{{ fee.discount }}</p>
+          </div>
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <p>{{ fee.total_price }}</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="50px">
+        <div class="left billto" fxLayout="row" >
+        </div>
+        <div class="right" fxLayout="column" fxLayoutAlign="space-between" >
+          <div fxLayoutAlign="end center">
+            <hr>
+            <h3>Total Amount (QAR) : {{ data.total }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button  mat-button color="primary"  (click)="print()">Print</button>
+  </mat-dialog-actions>

@@ -1,0 +1,110 @@
+@import "../../../../styles/_var.scss";
+
+.person{
+	width: 800px;
+	min-width: 800px;
+
+}
+.headdiv{
+	position: relative;
+}
+.headdiv h1{
+
+      text-align: center;
+    padding: 90px 0px;
+}
+.receipthead{
+	position: absolute;
+    left: 0;
+    right: 0;
+    width: 25%;
+    margin: auto;
+    height: 200px;
+    top: 0;
+    bottom: 0;
+}
+.left {
+	width: 400px;
+	float: left;
+
+}
+.left > div , .left div p {
+	text-align: left !important;
+	line-height: 1px !important;
+	display: block !important;
+}
+.picture {
+	height: 50px;
+  width: 220px;
+
+}
+
+.left > div , .left div p {
+	text-align: left !important;
+	line-height: 1px !important;
+	display: block !important;
+}
+
+
+.right {
+	float: right;
+	width: 400px;
+}
+.right > div , .right div p {
+	text-align: right !important;
+	line-height: 1px !important;
+	display: block !important;
+}
+.billto {
+  width: 560px !important;
+}
+.info {
+
+    font-size: 16px;
+
+}
+.names .name{
+   font-weight: 500;
+}
+
+.info .values {
+  margin-left: 24px;
+}
+
+.info .name,.info  .value {
+  padding: 8px 0;
+}
+
+.feesHead{
+  color: #FFF !important;
+  background: #0a94d9 !important;
+  margin-left: -24px;
+  padding-left: 24px;
+  margin-right: -24px;
+  padding-right: 24px;
+}
+.fees {
+  width: 700px;
+}
+.receipt{
+	border: 2px solid #000;
+    padding: 0px 20px;
+    width: 100%;
+    height: auto;
+}
+.receipt  > div {
+	width: 240px;
+	text-align: center;
+}
+.receipt  > div p {
+	line-height: 0.5px;
+}
+.cash {
+	width: 500px !important;
+	text-align: left !important;
+	margin-top: -20px;
+}
+.cashdate {
+	text-align: left !important;
+	margin-top: -20px;
+}

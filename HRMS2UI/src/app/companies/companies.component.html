@@ -1,0 +1,84 @@
+<div class="dashboard" fxLayout="column">
+  <div class="splash">
+    <div class="container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" fxLayoutGap.lt-md="24px">
+      <div class="example-loading-shade" *ngIf="isLoadingResults ">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      </div>
+      <div class="left" fxLayout="row" *ngIf="!isLoadingResults" >
+
+        <input type="file" id="avatar" (change)="fileChange($event)"  accept="image/*" #file style="display: none;">
+        <img fxFlex="150px"  id="preview"  class="picture" (click)="file.click()" [src]="image">
+        <div fxLayout="column" fxLayoutAlign="space-between">
+          <div>
+            <div class="head">{{ company.name }} - {{ company.code }}</div>
+              <div class="info" fxLayout="row">
+                <div class="names">
+                  <div class="name">Address:</div>
+                  <div class="name">Location:</div>
+                  <div class="name">Contact Person:</div>
+                  <div class="name">Phone:</div>
+                  <div class="name">Remarks:</div>
+                </div>
+                <div class="values">
+                  <div class="value">{{ company.address }}</div>
+                  <div class="value">{{ company.city }}</div>
+                  <div class="value">{{ company.person }}</div>
+                  <div class="value">{{ company.phone }}</div>
+                  <div class="value">{{ company.remarks }}</div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="right" fxLayout="column" fxLayoutAlign="space-between" *ngIf="!isLoadingResults">
+        <div>
+          <h4 class="title">{{ name }} Login</h4>
+          <div class="sub-title">
+            <mat-slide-toggle [checked]="login" (change)="enableDisbaleLogin()" color="primary">
+              Option to login to the system for the employee
+            </mat-slide-toggle>
+            </div>
+          </div>
+        <div *ngIf="type==1">
+          <h4 class="title">Convert to Client</h4>
+          <div class="sub-title">
+            <mat-slide-toggle  (change)="convertToCompany()" color="primary">
+              Option to change the Lead to Client
+            </mat-slide-toggle>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <mat-tab-group class="dashboard-tabs" *ngIf="!isLoadingResults" >
+      <mat-tab label="DOCUMENTS">
+        <vr-attachment></vr-attachment> 
+      </mat-tab>
+      <mat-tab label="ACTIVITY">
+        <vr-activity></vr-activity> 
+      </mat-tab><!-- 
+      <mat-tab label="LINE ITEMS" *ngIf="type!=3">
+        <vr-line></vr-line>
+      </mat-tab>
+      <mat-tab label="QUOTATION" *ngIf="type!=3">
+        <vr-quotation></vr-quotation>
+      </mat-tab>
+      <mat-tab label="COURSES" *ngIf="type==2">
+        <vr-course></vr-course>
+      </mat-tab>
+      <mat-tab label="INVOICE" *ngIf="type==2">
+        <vr-invoice></vr-invoice>
+      </mat-tab>
+      <mat-tab label="ITEM" *ngIf="type==3">
+        <vr-item></vr-item>
+      </mat-tab>
+      <mat-tab label="LPO" *ngIf="type==3">
+        <vr-lpo></vr-lpo>
+      </mat-tab> -->
+      <mat-tab label="PAYMENT" *ngIf="type!=1">
+        <vr-payment></vr-payment>
+      </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,19 @@
+
+<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+<mat-form-field fxFlex>
+  <mat-placeholder>Items</mat-placeholder>
+  <mat-select formControlName="item_id">
+    <mat-option *ngFor="let item of items" [value]="item.id">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field fxFlex>
+  <mat-placeholder>Quantity</mat-placeholder>
+  <input type="number" step="any" formControlName="item_quantity" matInput>
+</mat-form-field>
+<mat-form-field fxFlex="100%" fxFlex.gt-sm>
+  <mat-placeholder>Price</mat-placeholder>
+  <input type="number" step="any" readonly formControlName="item_price" matInput>
+</mat-form-field>
+</div>

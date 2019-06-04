@@ -1,0 +1,89 @@
+<h2 mat-dialog-title>Item</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>ItemName</mat-placeholder>
+          <input type="text" required formControlName="itemname" matInput>
+        </mat-form-field>
+          <mat-form-field fxFlex>
+          <mat-placeholder>ItemCode</mat-placeholder>
+          <input type="text" required formControlName="itemcode" matInput>
+        </mat-form-field>
+         <mat-form-field fxFlex>
+          <mat-placeholder>Barcode</mat-placeholder>
+          <input type="text" required formControlName="barcode" matInput>
+        </mat-form-field>     
+        <mat-form-field fxFlex>
+          <mat-placeholder>ROL</mat-placeholder>
+          <input type="text" formControlName="rol" matInput>
+        </mat-form-field>   
+       </div>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Category</mat-placeholder>
+          <mat-select formControlName="item_category_id" >
+            <mat-option *ngFor="let type of item_Category" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Manufacturer</mat-placeholder>
+          <mat-select formControlName="item_manufacturar_id" >
+            <mat-option *ngFor="let type of item_manufcaturer" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Shelf</mat-placeholder>
+          <mat-select formControlName="item_shelf_id" >
+            <mat-option *ngFor="let type of item_shelf" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+       <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex>
+          <mat-placeholder>Item Row</mat-placeholder>
+          <mat-select formControlName="item_row_id" >
+            <mat-option *ngFor="let type of item_row" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Item Column</mat-placeholder>
+          <mat-select formControlName="item_col_id" >
+            <mat-option *ngFor="let type of item_col" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Unit</mat-placeholder>
+          <mat-select formControlName="uom_id" >
+            <mat-option *ngFor="let type of item_uom" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-placeholder>Status</mat-placeholder>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statusData" [value]="status.key">
+              {{ status.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+   </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Item</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Item</button>
+  </mat-dialog-actions>
+</form>

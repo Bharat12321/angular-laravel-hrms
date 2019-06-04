@@ -1,0 +1,166 @@
+<h2 mat-dialog-title>Employee</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+    <div class="person">
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <!-- <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input matInput required formControlName="code" placeholder="Code">
+        </mat-form-field> -->
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input matInput required formControlName="name" placeholder="Name">
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input  [matDatepicker]="picker2" placeholder="Joining Date" required formControlName="joining_date" matInput>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input matInput formControlName="arabic_name" placeholder="Arabic Name">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input formControlName="email" matInput placeholder="Email Address">
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input [matDatepicker]="picker1" placeholder="Date of birth" formControlName="date_of_birth" matInput>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="gender" required placeholder="Gender" >
+            <mat-option *ngFor="let gender of genderData" [value]="gender.key">
+              {{ gender.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="country_id" placeholder="Nationality" >
+            <mat-option *ngFor="let country of countries" [value]="country.id">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input formControlName="contact_number" matInput placeholder="Contact Number">
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="designation_id" placeholder="Designation" >
+            <mat-option *ngFor="let designation of designations" [value]="designation.id">
+              {{ designation.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="type_id" placeholder="Employment Type" >
+            <mat-option *ngFor="let employmentType of employmentTypes" [value]="employmentType.id">
+              {{ employmentType.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      </div>
+       <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="sponsor_id" placeholder="Sponsor" >
+            <mat-option *ngFor="let sponsor of sponsors" [value]="sponsor.id">
+              {{ sponsor.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input matInput formControlName="salary" required placeholder="Salary" type="number" step="any">
+        </mat-form-field>
+      </div>  -->
+       <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="bank_id" placeholder="Bank" >
+            <mat-option *ngFor="let bank of banks" [value]="bank.id">
+              {{ bank.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input formControlName="account_number" matInput placeholder="Account Number">
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input formControlName="iban" matInput placeholder="IBAN">
+        </mat-form-field>
+
+      </div> --> 
+        <!-- <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="joining_type_id" placeholder="Joining Type" >
+            <mat-option *ngFor="let joiningType of joiningTypes" [value]="joiningType.id">
+              {{ joiningType.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="organization_id" required placeholder="Project" >
+            <mat-option *ngFor="let organization of organizations" [value]="organization.id">
+              {{ organization.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="department_id" placeholder="Department" >
+            <mat-option *ngFor="let department of departments" [value]="department.id">
+              {{ department.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+      <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="category_id" placeholder="Category" >
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="grade_id" placeholder="Grade" >
+            <mat-option *ngFor="let employeeGrade of employeeGrades" [value]="employeeGrade.id">
+              {{ employeeGrade.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="payroll_center_id" placeholder="Payroll Center" >
+            <mat-option *ngFor="let payroll of payrollCenter" [value]="payroll.id">
+              {{ payroll.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <input formControlName="remarks" matInput placeholder="Remarks">
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="working_status_id" placeholder="Working Status"  >
+            <mat-option *ngFor="let work of workingStatus" [value]="work.id">
+              {{ work.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm>
+          <mat-select formControlName="status" placeholder="Status" >
+            <mat-option *ngFor="let status of statusData" [value]="status.key">
+              {{ status.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-button color="primary" [disabled]="!form.valid">Create Employee</button>
+    <button *ngIf="isUpdateMode()" mat-button color="primary" [disabled]="!form.valid">Update Employee</button>
+  </mat-dialog-actions>
+</form>
